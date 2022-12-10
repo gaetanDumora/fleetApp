@@ -10,7 +10,7 @@ async function vehiculeRoutes(server: FastifyInstance) {
           type: "object",
           properties: {
             fleet: { type: "number" },
-            vehiculeIds: { type: "array", default: [] },
+            vehiculeIds: { type: "string" },
           },
         },
       },

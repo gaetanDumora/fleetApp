@@ -20,7 +20,7 @@ export class Fleet {
     });
     return this.fleetMap;
   }
-  public getVehicules(vehiculeIds: number[]) {
+  public getVehiculesByIds(vehiculeIds: number[]) {
     const vehicules: Vehicule[] = [];
     for (const id of vehiculeIds) {
       if (this.fleetMap.has(id)) {

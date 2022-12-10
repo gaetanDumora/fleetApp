@@ -3,7 +3,7 @@ import { FLEETS_STORAGE } from "../fleet/fleetController";
 import { generateVehicules } from "./vehiculeFactory";
 
 export async function registerVehiculeHandler(
-  request: FastifyRequest<{ Body: { fleet: number; vehiculeIds: number[] } }>,
+  request: FastifyRequest<{ Body: { fleet: number; vehiculeIds: string } }>,
   reply: FastifyReply
 ) {
   const { body } = request;
@@ -15,7 +15,7 @@ export async function registerVehiculeHandler(
     if (!fleet) {
       return reply.code(404).send({ fleet: undefined });
     }
-    const vehicules = generateVehicules(body.vehiculeIds);
+    const vehicules = generateVehicules(JSON.parse(body.vehiculeIds));
     fleet.registerVehicules(vehicules);
     return reply.code(201).send({
       fleet: fleet.fleetId,

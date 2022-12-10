@@ -3,7 +3,7 @@ import { FLEETS_STORAGE } from "../fleet/fleetController";
 import { trackingLocationSystem } from "./locationSingleton";
 
 export async function registerLocationHandler(
-  request: FastifyRequest<{ Body: { fleet: number; vehiculeIds: number[] } }>,
+  request: FastifyRequest<{ Body: { fleet: number; vehiculeIds: string } }>,
   reply: FastifyReply
 ) {
   const { body } = request;
@@ -16,7 +16,8 @@ export async function registerLocationHandler(
       return reply.code(404).send({ fleet: undefined });
     }
 
-    const vehicules = fleet.getVehicules(body.vehiculeIds);
+    const vehicules = fleet.getVehiculesByIds(JSON.parse(body.vehiculeIds));
+
     if (!vehicules.length) {
       return reply.code(404).send({ vehicules: undefined });
     }

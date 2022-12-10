@@ -5,11 +5,12 @@ export class Location {
   readonly takenLocations: Map<string[], number> = new Map();
 
   public trackParkedVehicule(vehicule: Vehicule) {
-    if (this.takenLocations.has(vehicule.location)) {
+    if (
+      this.takenLocations.has(vehicule.location) ||
+      this.vehiculesLocation.has(vehicule.vehiculeId)
+    ) {
       throw new Error(
-        `Location [${
-          vehicule.location
-        }] is taken by vehicule: ${this.takenLocations.get(vehicule.location)}`
+        `Location [${vehicule.location}] is taken by vehicule: ${vehicule.vehiculeId}`
       );
     }
     this.takenLocations.set(vehicule.location, vehicule.vehiculeId);

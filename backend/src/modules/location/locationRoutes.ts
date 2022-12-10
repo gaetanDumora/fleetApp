@@ -22,7 +22,7 @@ async function locationRoutes(server: FastifyInstance) {
           type: "object",
           properties: {
             fleet: { type: "number" },
-            vehiculeIds: { type: "array" },
+            vehiculeIds: { type: "string" },
           },
         },
       },
