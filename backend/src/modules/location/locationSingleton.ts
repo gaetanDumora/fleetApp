@@ -2,9 +2,9 @@ import { Vehicule } from "../vehicule/vehiculeModel";
 
 export class Location {
   readonly vehiculesLocation: Map<number, Vehicule> = new Map();
-  private takenLocations: Map<string[], number> = new Map();
+  readonly takenLocations: Map<string[], number> = new Map();
 
-  trackParkedVehicule(vehicule: Vehicule) {
+  public trackParkedVehicule(vehicule: Vehicule) {
     if (this.takenLocations.has(vehicule.location)) {
       throw new Error(
         `Location [${
@@ -14,6 +14,17 @@ export class Location {
     }
     this.takenLocations.set(vehicule.location, vehicule.vehiculeId);
     this.vehiculesLocation.set(vehicule.vehiculeId, vehicule);
+  }
+
+  public getVehiculesAt(coordinates: string[][]) {
+    const vehicules: Vehicule[] = [];
+    for (const coordinate of coordinates) {
+      if (this.takenLocations.has(coordinate)) {
+        const id = this.takenLocations.get(coordinate) as number;
+        vehicules.push(this.vehiculesLocation.get(id) as Vehicule);
+      }
+    }
+    return vehicules;
   }
 }
 

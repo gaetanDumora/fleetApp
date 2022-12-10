@@ -1,7 +1,7 @@
 import { describe, it, expect } from "@jest/globals";
 
 import { generateVehicules } from "../src/modules/vehicule/vehiculeFactory";
-import { xWingHunters } from "../src/modules/vehicule/starWarsVehicules.ts/xWingVehicules";
+import { xWingHunters } from "../src/modules/vehicule/starWarsVehicules/xWingVehicules";
 import { imperialFleet } from "../src/modules/fleet/starWarsFleets/imperialFleet";
 import { allianceFleet } from "../src/modules/fleet/starWarsFleets/allianceFleet";
 

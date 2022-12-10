@@ -1,7 +1,7 @@
 import { trackingLocationSystem } from "../src/modules/location/locationSingleton";
 import { describe, expect, it } from "@jest/globals";
-import { tieHunters } from "../src/modules/vehicule/starWarsVehicules.ts/tieHunterVehicules";
-import { xWingHunters } from "../src/modules/vehicule/starWarsVehicules.ts/xWingVehicules";
+import { tieHunters } from "../src/modules/vehicule/starWarsVehicules/tieHunterVehicules";
+import { xWingHunters } from "../src/modules/vehicule/starWarsVehicules/xWingVehicules";
 
 describe("trackingLocationSystem", () => {
   it("should regiter hunter location when parked, and it can't park twice", () => {
@@ -30,5 +30,19 @@ describe("trackingLocationSystem", () => {
     expect(() =>
       trackingLocationSystem.trackParkedVehicule(xWingHunters[1])
     ).toThrow();
+  });
+
+  it("should return the hunter parked at this location", () => {
+    // Xwing flies and has no particular location
+    const locationBeforePark = xWingHunters[4].location;
+    // Xwing come back to the base and parked
+    xWingHunters[4].park();
+    // Now he had a location registred
+    const allianceParking = xWingHunters[4].location;
+
+    expect(locationBeforePark.length).toEqual(0);
+    expect(
+      trackingLocationSystem.getVehiculesAt([allianceParking])[0].vehiculeId
+    ).toEqual(xWingHunters[4].vehiculeId);
   });
 });
