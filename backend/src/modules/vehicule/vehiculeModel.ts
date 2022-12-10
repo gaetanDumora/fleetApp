@@ -2,7 +2,7 @@ import { EventEmitter } from "node:events";
 import { coordinatesGenerator } from "../location/locationService";
 
 export class Vehicule extends EventEmitter {
-  readonly vehiculeId;
+  readonly vehiculeId: number;
   location: string[] = [];
   private gps = coordinatesGenerator;
   readonly fleets: number[] = [];
@@ -10,13 +10,13 @@ export class Vehicule extends EventEmitter {
     super();
     this.vehiculeId = vehiculeId;
   }
-  park() {
+  public park() {
     // We can't park vehicule already parked.
     if (this.location.length) {
       return;
     }
-    const parkLocation = this.gps();
-    this.location = parkLocation;
+    const parkedLocation = this.gps();
+    this.location = parkedLocation;
     return this.emit("vehicule:parked", this);
   }
 }
