@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import fleetRoutes from "./modules/fleet/fleetRoute";
+import fleetRoutes from "./modules/fleet/fleetRoutes";
 import locationRoutes from "./modules/location/locationRoutes";
 import vehiculeRoutes from "./modules/vehicule/vehiculeRoutes";
 

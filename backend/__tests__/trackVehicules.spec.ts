@@ -1,7 +1,7 @@
 import { trackingLocationSystem } from "../src/modules/location/locationSingleton";
 import { describe, expect, it } from "@jest/globals";
-import { tieHunters } from "../src/modules/vehicule/starWarsVehicules/tieHunterVehicules";
-import { xWingHunters } from "../src/modules/vehicule/starWarsVehicules/xWingVehicules";
+import { tieHunters } from "../fixtures/starWarsVehicules/tieHunterVehicules";
+import { xWingHunters } from "../fixtures/starWarsVehicules/xWingVehicules";
 
 describe("trackingLocationSystem", () => {
   it("should regiter hunter location when parked, and it can't park twice", () => {
