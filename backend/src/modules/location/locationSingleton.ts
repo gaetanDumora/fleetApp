@@ -4,15 +4,15 @@ export class Location {
   readonly vehiculesLocation: Map<number, Vehicule> = new Map();
   private takenLocations: Map<string[], number> = new Map();
 
-  trackParkedVehicule(coordinates: string[], vehicule: Vehicule) {
-    if (this.takenLocations.has(coordinates)) {
+  trackParkedVehicule(vehicule: Vehicule) {
+    if (this.takenLocations.has(vehicule.location)) {
       throw new Error(
-        `Location [${coordinates}] is taken by vehicule: ${this.takenLocations.get(
-          coordinates
-        )}`
+        `Location [${
+          vehicule.location
+        }] is taken by vehicule: ${this.takenLocations.get(vehicule.location)}`
       );
     }
-    this.takenLocations.set(coordinates, vehicule.vehiculeId);
+    this.takenLocations.set(vehicule.location, vehicule.vehiculeId);
     this.vehiculesLocation.set(vehicule.vehiculeId, vehicule);
   }
 }

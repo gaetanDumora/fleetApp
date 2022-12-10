@@ -17,6 +17,6 @@ export class Vehicule extends EventEmitter {
     }
     const parkLocation = this.gps();
     this.location = parkLocation;
-    return this.emit("vehicule:parked", parkLocation, this);
+    return this.emit("vehicule:parked", this);
   }
 }

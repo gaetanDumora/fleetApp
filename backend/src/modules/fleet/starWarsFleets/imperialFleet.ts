@@ -1,5 +1,5 @@
 import { Fleet } from "../fleetModel";
-import { tieHunters } from "../../vehicule/starWarsVehicules/tieHunterVehicules";
+import { tieHunters } from "../../vehicule/starWarsVehicules.ts/tieHunterVehicules";
 
 export const imperialFleet = new Fleet(666);
 try {

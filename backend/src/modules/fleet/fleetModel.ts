@@ -2,7 +2,7 @@ import { Vehicule } from "../vehicule/vehiculeModel";
 
 export class Fleet {
   private fleetMap: Map<number, Vehicule> = new Map();
-  private fleetId;
+  readonly fleetId;
   constructor(fleetId: number) {
     this.fleetId = fleetId;
   }
