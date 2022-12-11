@@ -1,6 +1,6 @@
 # Fleet App
 
-Manage your fleet to never lost vehicules.
+Manage your fleet and never lost vehicules.
 
 ## Usage
 
@@ -17,15 +17,13 @@ This will install dependencies, compile the TypeScript code in ./build folder an
 Start here if you want to understand what modules does.
 Hope you like Star Wars.
 
-Here
-
 ```sh
 $ npm test
 ```
 
 ## API
 
-I made the choice to use a web server witn endpoints, rather than cli interface.
+I made the choice to use a web server with endpoints, rather than cli interface.
 
 ### Create a fleet /fleet
 
@@ -38,7 +36,7 @@ $ curl -d '{"id":"YOUR_FLEET_ID"}' -H "Content-Type: application/json" -X POST h
 ### Register vehicules to a fleet /register-vehicules
 
 Once a fleet is created, we can register vehicules to it.
-We can't register twice a vehicule in a fleet, but, a vehicule can belong to several fleets.
+We can't register twice a vehicule in a fleet, but a vehicule can belong to several fleets.
 
 ```sh
 $ curl -d '{"fleet":"YOUR_FLEET_ID", "vehiculeIds":[...YOUR_VHL_IDS]}' -H "Content-Type: application/json" -X POST http://localhost:3000/register-vehicules
@@ -48,7 +46,7 @@ $ curl -d '{"fleet":"YOUR_FLEET_ID", "vehiculeIds":[...YOUR_VHL_IDS]}' -H "Conte
 ### Park vehicules /park-vehicules
 
 Now we can park our new created vehicules.
-When you want to park, just give your fleet ID and the vehicule IDs and the GPS will be in charge of tracking where you parked.
+When you want to park, just pass your fleet ID and vehicule IDs and the GPS will be in charge of tracking where you parked.
 
 ```sh
 $ curl -d '{"fleet":"YOUR_FLEET_ID", "vehiculeIds":[...YOUR_VHL_IDS]}' -H "Content-Type: application/json" -X POST http://localhost:3000/park-vehicules
