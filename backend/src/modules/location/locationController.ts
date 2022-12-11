@@ -1,23 +1,20 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { FLEETS_STORAGE } from "../fleet/fleetController";
+import { getFleetById } from "../fleet/fleetService";
 import { trackingLocationSystem } from "./locationSingleton";
 
 export async function registerLocationHandler(
-  request: FastifyRequest<{ Body: { fleet: number; vehiculeIds: string } }>,
+  request: FastifyRequest<{ Body: { fleet: number; vehiculeIds: number[] } }>,
   reply: FastifyReply
 ) {
   const { body } = request;
 
   try {
-    const [fleet] = FLEETS_STORAGE.filter(
-      ({ fleetId }) => body.fleet == fleetId
-    );
+    const fleet = getFleetById(body.fleet);
     if (!fleet) {
       return reply.code(404).send({ fleet: undefined });
     }
 
-    const vehicules = fleet.getVehiculesByIds(JSON.parse(body.vehiculeIds));
-
+    const vehicules = fleet.getVehiculesByIds(body.vehiculeIds);
     if (!vehicules.length) {
       return reply.code(404).send({ vehicules: undefined });
     }
@@ -33,4 +30,19 @@ export async function registerLocationHandler(
   }
 }
 
-export async function findVehiculesAtLocations() {}
+export async function findVehiculesAtLocations(
+  request: FastifyRequest<{ Body: { coordinates: string[][] } }>,
+  reply: FastifyReply
+) {
+  const { body } = request;
+
+  try {
+    const vehicules = trackingLocationSystem.getVehiculesAt(body.coordinates);
+    return reply.code(201).send({
+      vehicules,
+    });
+  } catch (e) {
+    console.log(e);
+    return reply.code(500).send(e);
+  }
+}

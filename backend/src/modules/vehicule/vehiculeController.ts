@@ -1,21 +1,19 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { FLEETS_STORAGE } from "../fleet/fleetController";
+import { getFleetById } from "../fleet/fleetService";
 import { generateVehicules } from "./vehiculeFactory";
 
 export async function registerVehiculeHandler(
-  request: FastifyRequest<{ Body: { fleet: number; vehiculeIds: string } }>,
+  request: FastifyRequest<{ Body: { fleet: number; vehiculeIds: number[] } }>,
   reply: FastifyReply
 ) {
   const { body } = request;
 
   try {
-    const [fleet] = FLEETS_STORAGE.filter(
-      ({ fleetId }) => body.fleet == fleetId
-    );
+    const fleet = getFleetById(body.fleet);
     if (!fleet) {
       return reply.code(404).send({ fleet: undefined });
     }
-    const vehicules = generateVehicules(JSON.parse(body.vehiculeIds));
+    const vehicules = generateVehicules(body.vehiculeIds);
     fleet.registerVehicules(vehicules);
     return reply.code(201).send({
       fleet: fleet.fleetId,
