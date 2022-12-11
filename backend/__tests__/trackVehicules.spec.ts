@@ -1,7 +1,7 @@
-import { r2d2 } from "../fixtures/r2d2";
+import { r2d2 } from "./fixtures/r2d2";
 import { describe, expect, it } from "@jest/globals";
-import { tieHunters } from "../fixtures/starWarsVehicules/tieHunterVehicules";
-import { xWingHunters } from "../fixtures/starWarsVehicules/xWingVehicules";
+import { tieHunters } from "./fixtures/starWarsVehicules/tieHunterVehicules";
+import { xWingHunters } from "./fixtures/starWarsVehicules/xWingVehicules";
 
 describe("r2d2", () => {
   it("should regiter hunter location when parked, and it can't park twice", () => {
@@ -9,17 +9,17 @@ describe("r2d2", () => {
     tieHunters[3].park();
     tieHunters[3].park();
 
-    const parkedLocation = r2d2.vehiculesLocation.get(
+    const parkedLocation = r2d2.parkedVehicules.get(
       tieHunters[3].vehiculeId
     )?.location;
 
-    expect(r2d2.vehiculesLocation.size).toEqual(1);
+    expect(r2d2.parkedVehicules.size).toEqual(1);
     expect(parkedLocation).toBeDefined();
   });
 
   it("should throw an error if a Xwing try to park on location taken by a TieHunter", () => {
     // As coordinates are generated randomly, lets pick an existing parked hunter
-    const tieHunter3 = r2d2.vehiculesLocation.get(tieHunters[3].vehiculeId);
+    const tieHunter3 = r2d2.parkedVehicules.get(tieHunters[3].vehiculeId);
     // Get its parked coordinates
     const tieHunter3Location = tieHunter3?.location ?? [];
     // Assign to a new hunter, the taken loaction

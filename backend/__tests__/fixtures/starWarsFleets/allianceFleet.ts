@@ -1,4 +1,4 @@
-import { Fleet } from "../../src/modules/fleet/fleetModel";
+import { Fleet } from "../../../src/modules/fleet/fleetModel";
 import { xWingHunters } from "../starWarsVehicules/xWingVehicules";
 
 export const allianceFleet = new Fleet(777);

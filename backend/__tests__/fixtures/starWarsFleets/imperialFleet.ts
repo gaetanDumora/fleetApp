@@ -1,4 +1,4 @@
-import { Fleet } from "../../src/modules/fleet/fleetModel";
+import { Fleet } from "../../../src/modules/fleet/fleetModel";
 import { tieHunters } from "../starWarsVehicules/tieHunterVehicules";
 
 export const imperialFleet = new Fleet(666);

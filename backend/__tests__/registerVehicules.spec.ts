@@ -1,8 +1,8 @@
 import { describe, it, expect } from "@jest/globals";
 import { generateVehicules } from "../src/modules/vehicule/vehiculeFactory";
-import { allianceFleet } from "../fixtures/starWarsFleets/allianceFleet";
-import { imperialFleet } from "../fixtures/starWarsFleets/imperialFleet";
-import { xWingHunters } from "../fixtures/starWarsVehicules/xWingVehicules";
+import { allianceFleet } from "./fixtures/starWarsFleets/allianceFleet";
+import { imperialFleet } from "./fixtures/starWarsFleets/imperialFleet";
+import { xWingHunters } from "./fixtures/starWarsVehicules/xWingVehicules";
 
 describe("registerVehicules", () => {
   it("should prevent to generate duplicate hunters", () => {
