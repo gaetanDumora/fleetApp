@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm install && npx tsc -p tsconfig.json && npm run test",
+    "build": "npm install && npx tsc -p tsconfig.json",
+    "start": "npm run build && node build/server.js",
     "test": "npx jest"
   },
   "keywords": [],
