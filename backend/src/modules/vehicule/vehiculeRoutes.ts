@@ -3,14 +3,14 @@ import { registerVehiculeHandler } from "./vehiculeController";
 
 async function vehiculeRoutes(server: FastifyInstance) {
   server.post(
-    "/generate-vehicules",
+    "/register-vehicules",
     {
       schema: {
         body: {
           type: "object",
           properties: {
             fleet: { type: "number" },
-            vehiculeIds: { type: "string" },
+            vehiculeIds: { type: "array" },
           },
         },
       },

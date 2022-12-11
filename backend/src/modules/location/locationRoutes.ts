@@ -5,11 +5,16 @@ import {
 } from "./locationController";
 
 async function locationRoutes(server: FastifyInstance) {
-  server.get(
-    "/vehicules-at",
+  server.post(
+    "/find",
     {
       schema: {
-        querystring: {},
+        body: {
+          type: "object",
+          properties: {
+            coordinates: { type: "array" },
+          },
+        },
       },
     },
     findVehiculesAtLocations
@@ -22,7 +27,7 @@ async function locationRoutes(server: FastifyInstance) {
           type: "object",
           properties: {
             fleet: { type: "number" },
-            vehiculeIds: { type: "string" },
+            vehiculeIds: { type: "array" },
           },
         },
       },
